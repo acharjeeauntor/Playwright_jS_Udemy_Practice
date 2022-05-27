@@ -37,8 +37,19 @@ test("More valiation4", async ({ page }) => {
     await page.locator("#confirmbtn").click()
 })
 
-test.only("More validation 5",async({page})=>{
+test("More validation 5",async({page})=>{
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/")
     await page.locator("#mousehover").hover()
     await page.pause()
+})
+
+
+test.only("Frame",async({page})=>{
+    await page.goto("https://rahulshettyacademy.com/AutomationPractice/")
+    const framePages = page.frameLocator("#courses-iframe")
+    await framePages.locator("li a[href*='lifetime-access']:visible").click()
+    const text = await framePages.locator(".text h2").textContent()
+    const sub = text.split(" ")[1]
+    console.log(sub)
+    expect(sub).toEqual("13,522")
 })
