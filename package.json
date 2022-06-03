@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test":"npx playwright test VisualTesting.spec.js"
+    "test": "npx playwright test NetworkMocking.spec.js"
   },
   "keywords": [],
   "author": "",

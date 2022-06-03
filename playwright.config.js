@@ -29,8 +29,8 @@ const config = {
     screenshot:"only-on-failure",
     trace:"on",
     viewport:{
-      width:1800,
-      height:1000
+      width:1000,
+      height:800
     }
   },
   reporter: 'html',
