@@ -1,12 +1,12 @@
 const { test, expect } = require("@playwright/test")
 
-test.only("Run by browser context", async ({ browser }) => {
+test("Run by browser context", async ({ browser }) => {
     const context = await browser.newContext()
     const page = await context.newPage()
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
 })
 
-test("Run basic UI", async ({ page }) => {
+test.only("Run basic UI", async ({ page }) => {
     const blinkingTextLocator = page.locator('[href*="documents-request"]')
 
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
