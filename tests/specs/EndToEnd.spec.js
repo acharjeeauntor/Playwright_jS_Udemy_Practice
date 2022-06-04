@@ -1,12 +1,11 @@
 const { test, expect } = require("@playwright/test")
+const projectData = require("../../test-data/EndToEndTestData.json")
 
 test("End To End", async ({ page }) => {
-    const email = "anshika@gmail.com"
     const products = page.locator(".card-body")
-    const productName = "adidas original"
     await page.goto("https://rahulshettyacademy.com/client")
-    await page.locator("#userEmail").type(email)
-    await page.locator("#userPassword").type("Iamking@000")
+    await page.locator("#userEmail").type(projectData.email)
+    await page.locator("#userPassword").type(projectData.password)
     await page.locator("#login").click()
     await page.waitForLoadState('networkidle')
     //await page.waitForNavigation()
@@ -17,7 +16,7 @@ test("End To End", async ({ page }) => {
     console.log(count)
 
     for (let i = 0; i < count; i++) {
-        if (await products.nth(i).locator("b").textContent() === productName) {
+        if (await products.nth(i).locator("b").textContent() === projectData.productName) {
             console.log(await products.nth(i).locator('b').textContent())
             await products.nth(i).locator("text= Add To Cart").click()
             break
@@ -54,3 +53,35 @@ test("End To End", async ({ page }) => {
    console.log(orderId);
 
 })
+
+for(const data of projectData){
+    test.only(`Data driven test for ${data.email} account`, async ({ page }) => {
+        const products = page.locator(".card-body")
+        await page.goto("https://rahulshettyacademy.com/client")
+        await page.locator("#userEmail").type(data.email)
+        await page.locator("#userPassword").type(data.password)
+        await page.locator("#login").click()
+        await page.waitForLoadState('networkidle')
+       
+        console.log(await page.locator(".card-body b").allTextContents())
+    
+        const count = await products.count()
+        console.log(count)
+    
+        for (let i = 0; i < count; i++) {
+            if (await products.nth(i).locator("b").textContent() === data.productName) {
+                console.log(await products.nth(i).locator('b').textContent())
+                await products.nth(i).locator("text= Add To Cart").click()
+                break
+            }
+        }
+    
+        await page.locator("[routerlink*='cart']").click()
+        await page.locator("div li").first().waitFor()
+        const bool = await page.locator("h3:has-text('adidas original')").isVisible()
+       // expect(bool).toBeTruthy()
+        await page.locator("text=Checkout").click()
+    
+    })
+}
+
