@@ -58,6 +58,11 @@ test('Intercept / mocking network request call: practice', async ({ page }) => {
 
 });
 
+test("Network abort", async ({ page }) => {
+  page.route(route => route.abort())
+  await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+  await page.pause()
+})
 
 test("Network abort:block css", async ({ page }) => {
   page.route("**/*.css", route => route.abort())
@@ -77,7 +82,7 @@ test("Network abort:block images", async ({ page }) => {
   await page.pause()
 })
 
-test.only("Network request-response api event", async ({ page }) => {
+test("Network request-response api event", async ({ page }) => {
   
   await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
 
