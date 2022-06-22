@@ -59,6 +59,11 @@ test('Intercept / mocking network request call: practice', async ({ page }) => {
 
 });
 
+test("Network abort", async ({ page }) => {
+  page.route(route => route.abort())
+  await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+  await page.pause()
+})
 
 test("Network abort:block css", async ({ page }) => {
   page.route("**/*.css", route => route.abort())
@@ -79,8 +84,13 @@ test("Network abort:block images", async ({ page }) => {
 })
 
 test("Network request-response api event", async ({ page }) => {
+<<<<<<< HEAD
   page.on('request', request => console.log(`>> ${request.method()} ${request.resourceType()} ${request.url()}`))
   page.on('response', response => console.log(`<< ${response.url()}, ${response.status()}`))
+=======
+  
+  await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+>>>>>>> e1fefa3e187274afdadf6593892faa65c98cc270
 
   await page.goto("https://www.etsy.com/")
   await page.locator("#global-enhancements-search-query").fill("gift box")
