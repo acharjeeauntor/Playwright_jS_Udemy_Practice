@@ -40,6 +40,19 @@ const config = {
       }
     },
     {
+      name: "webkit",
+      use: {
+        browserName: "webkit",
+        headless: !true,
+        screenshot: "only-on-failure",
+        trace: "on",
+        viewport: {
+          width: 1200,
+          height: 700
+        }
+      }
+    },
+    {
       name: "chrome",
       use: {
         browserName: "chromium",

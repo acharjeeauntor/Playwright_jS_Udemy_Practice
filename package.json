@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test UIBasictest.spec.js --config playwright.config2.js --project=chrome"
+    "test": "npx playwright test NetworkMocking.spec.js --config playwright.config2.js --project=webkit"
   },
   "keywords": [],
   "author": "",
