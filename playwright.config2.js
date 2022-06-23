@@ -56,7 +56,7 @@ const config = {
       name: "chrome",
       use: {
         browserName: "chromium",
-        headless: true,
+        headless: !true,
         trace: "on",
         ...devices['Galaxy Tab S4'],
         ignoreHTTPSErrors:true,
